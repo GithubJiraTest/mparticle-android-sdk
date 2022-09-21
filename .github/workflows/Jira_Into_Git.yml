@@ -46,6 +46,10 @@ jobs:
       #     password: ${{ env.JIRA_API_TOKEN }}
       #     customHeaders: '{"Content-Type": "application/json"}'
 
+      - name: test echo
+        run: |
+          ${{ env.JIRA_BASE_URL }}/rest/api/2/issue/${{ github.event.input.jira_ticket }}/remotelink
+
       - name: Get Jira Ticket Links
         run: |
           curl -k -u ${{ env.JIRA_USER_EMAIL }}:${{ env.JIRA_API_TOKEN }} -X GET -H 'Content-Type: application/json' \
