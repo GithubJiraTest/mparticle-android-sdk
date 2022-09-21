@@ -21,9 +21,10 @@ jobs:
         uses: atlassian/gajira-login@master
 
       - name: "Get Issue"
+        id: get
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'get-issue'
 
       - name: "Log created issue"
-        run: echo "${{ steps.create.outputs.issue-labels }}"   
+        run: echo "${{ steps.get.outputs.issue-labels }}"   
