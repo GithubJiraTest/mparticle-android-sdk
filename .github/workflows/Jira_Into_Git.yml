@@ -40,7 +40,7 @@ jobs:
       - name: Get Jira Ticket Links
         uses: fjogeleit/http-request-action@v1.11.0
         with:
-          url: ${{ env.JIRA_BASE_URL }}/rest/api/2/issue/${{ github.event.input.jira_ticket }}/remotelink
+          url: ${{ env.JIRA_BASE_URL }}/rest/api/2/issue/${{ github.event.inputs.jira_ticket }}/remotelink
           method: GET
           username: ${{ env.JIRA_USER_EMAIL }}
           password: ${{ env.JIRA_API_TOKEN }}
