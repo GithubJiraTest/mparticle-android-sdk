@@ -97,3 +97,12 @@ jobs:
           -H "Authorization: Bearer ${{github.token}}" \
           ${{ steps.sub.outputs.value }} \
           -d '{"state":"closed"}'
+        
+      - name: Comment status
+        run: |
+          curl \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{github.token}}" \
+          ${{ steps.sub.outputs.value }}/comments \
+          -d '{"body":"mParticle ticket status has been changed to ${{ steps.set_variable.outputs.ticket_status }}"}'
