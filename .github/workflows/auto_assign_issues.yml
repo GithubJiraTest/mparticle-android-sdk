@@ -13,4 +13,4 @@ jobs:
             assignees: mchuangatmp,simonhoke
             numOfAssignee: 1
             allowSelfAssign: false
-            repo-token: ${{ secrets.JIRA_API_TOKEN }}
+            repo-token: ${{ secrets.MPARTICLE_BOT }}
