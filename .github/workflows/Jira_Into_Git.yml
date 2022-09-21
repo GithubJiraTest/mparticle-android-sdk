@@ -82,7 +82,13 @@ jobs:
         
       - name: Set Ticket Status Closed
         if: ${{ steps.set_variable.outputs.ticket_status == 'closed' }}
-        run: curl -u $GITHUB_TOKEN:x-oauth-basic ${{ steps.sub.outputs.value }} -d '{"state":"closed"}'
+        run: |
+          curl \
+          -X PATCH \
+          -H "Accept: application/vnd.github+json" \ 
+          -H "Authorization: Bearer ${{github.token}}" \
+          ${{ steps.sub.outputs.value }} \
+          -d '{"state":"closed"}'
       
 
 
