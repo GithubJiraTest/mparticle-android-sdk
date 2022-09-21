@@ -63,7 +63,7 @@ jobs:
 
       - run: echo ${{ steps.sub.outputs.value }}
 
-      - run : echo ${{ github.event.inputs.ticket_status }}
+      - run : echo "${{ github.event.inputs.ticket_status }}"
       
       - name: Set variable closed
         id: set_variable
