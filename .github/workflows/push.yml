@@ -46,7 +46,7 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Tracked internally as ${{ steps.create.outputs.issue }} was created
+            Tracked internally as [${{ steps.create.outputs.issue }}] was created
           reactions: '+1'
           
       - name: Create label
