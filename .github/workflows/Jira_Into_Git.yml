@@ -63,15 +63,22 @@ jobs:
 
       - run: echo ${{ steps.sub.outputs.value }}
       
-      # ${{ steps.create.outputs.issue }}
+      - name: Set variable open
+        run: echo ::set-output name=status::open
 
-      # - name: test echo
-      #   run: |
-      #     echo ${{ env.JIRA_BASE_URL }}/rest/api/2/issue/${{ github.event.inputs.jira_ticket }}/remotelink
+      - name: Set variable open
+        id: set_variable
+        if: contains(fromJson('["Done", "Won't Do"]'), steps.parse_url.outputs.ticket_status) 
+        run: echo ::set-output name=status::closed
 
-      # - name: Get Jira Ticket Links
-      #   run: |
-      #     curl -k -u ${{ env.JIRA_USER_EMAIL }}:${{ env.JIRA_API_TOKEN }} -X GET -H 'Content-Type: application/json' \
-      #     ${{ env.JIRA_BASE_URL }}/rest/api/2/issue/${{ github.event.inputs.jira_ticket }}/remotelink
-          
+      - name: Set Ticket Status Open
+        if: steps.set_variable.outputs.status == "open"
+        run: echo Opening ticket
+
+      - name: Set Ticket Status Closed
+        if: steps.set_variable.outputs.status == "closed"
+        run: echo Closing ticket
+      
+
+
 
