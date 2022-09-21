@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Create Git Issue from Jira
+name: Update Github Issue Status
 
 # Controls when the workflow will run
 on:
@@ -39,12 +39,26 @@ jobs:
 
       - name: Get Jira Ticket Links
         uses: fjogeleit/http-request-action@v1.11.0
+        id: get_links
         with:
           url: ${{ env.JIRA_BASE_URL }}/rest/api/2/issue/${{ github.event.inputs.jira_ticket }}/remotelink
           method: GET
           username: ${{ env.JIRA_USER_EMAIL }}
           password: ${{ env.JIRA_API_TOKEN }}
           customHeaders: '{"Content-Type": "application/json"}'
+
+
+# replace  github.com api.github.com/repos
+      - uses: bluwy/substitute-string-action@v1
+        id: sub
+        with:
+          _input-text: '${{ steps.get_links.response }}'
+          github.com: api.github.com/repos
+
+      - run: echo ${{ steps.sub.outputs.result }} # Prints 'Hello GitHub!'
+      
+      
+      # ${{ steps.create.outputs.issue }}
 
       # - name: test echo
       #   run: |
