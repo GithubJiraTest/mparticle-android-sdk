@@ -8,7 +8,7 @@ Hello! This is the public repo of the mParticle Android SDK. mParticle's mission
 
 The platform has grown to support 100+ partners in the ecosystem, including developer tools, analytics, attribution, marketing automation, and advertising services. We also have a powerful audience engine that sits atop our platform to let you action on all of your data - [learn more here](https://www.mparticle.com)!
 
-### Core SDK
+### Core SDK 1.0
 
 mParticle's Android integration is powered by a Core library, which supports mParticle's server-side integrations and audience platform.
 
