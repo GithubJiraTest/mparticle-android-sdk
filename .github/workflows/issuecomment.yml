@@ -25,12 +25,7 @@ jobs:
         with:
           actions: 'get-issue'
       
-      - name: "Create Comment"
-        id: create
-        uses: atlassian/gajira-comment@master
-        with:
-        issue: ${{ steps.create.outputs.issues-labels }}
-        comment: ${{ github.event.pusher.name }} pushed to repository: ${{ github.event.repository.full_name }}
+     
 
       - name: "Log created issue"
         run: echo "${{ steps.create.outputs.issues-labels }}"   
