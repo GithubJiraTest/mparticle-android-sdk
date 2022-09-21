@@ -73,7 +73,7 @@ jobs:
         run: |
           curl \
           -X PATCH \
-          -H "Accept: application/vnd.github+json" \ 
+          -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{github.token}}" \
           ${{ steps.sub.outputs.value }} \
           -d '{"state":"open"}'
@@ -85,7 +85,7 @@ jobs:
         run: |
           curl \
           -X PATCH \
-          -H "Accept: application/vnd.github+json" \ 
+          -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{github.token}}" \
           ${{ steps.sub.outputs.value }} \
           -d '{"state":"closed"}'
