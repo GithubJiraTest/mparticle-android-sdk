@@ -47,10 +47,12 @@ jobs:
           password: ${{ env.JIRA_API_TOKEN }}
           customHeaders: '{"Content-Type": "application/json"}'
 
+      - run: echo ${{ steps.get_links.outputs.response }}
+
       - uses: mad9000/actions-find-and-replace-string@2
         id: sub
         with:
-          source: '${{ steps.get_links.response }}'
+          source: '${{ steps.get_links.outputs.response }}'
           find: github.com
           replace: api.github.com/repos
 
