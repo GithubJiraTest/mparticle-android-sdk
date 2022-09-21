@@ -6,7 +6,7 @@ on:
 
 jobs:
     add-reviewers:
-        name: "Check PR for semantic title"
+        name: "Add reviewers to PR"
         if: ${{ github.actor != 'dependabot[bot]' }}
         runs-on: ubuntu-latest
         steps:
