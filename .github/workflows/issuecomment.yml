@@ -45,5 +45,5 @@ jobs:
         with:
           issue-number: ${{ steps.find.outputs.issue }}
           body: |
-            ${{ github.event.issue.comment }}
+            ${{ github.event.comment.body }}
           reactions: '+1'  
