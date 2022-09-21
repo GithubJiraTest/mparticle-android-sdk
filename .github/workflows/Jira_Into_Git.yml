@@ -78,8 +78,6 @@ jobs:
           ${{ steps.sub.outputs.value }} \
           -d '{"state":"open"}'
         
-        #curl -u $GITHUB_TOKEN:x-oauth-basic ${{ steps.sub.outputs.value }} -d '{"state":"open"}'
-        
       - name: Set Ticket Status Closed
         if: ${{ steps.set_variable.outputs.ticket_status == 'closed' }}
         run: |
@@ -90,6 +88,15 @@ jobs:
           ${{ steps.sub.outputs.value }} \
           -d '{"state":"closed"}'
       
+      - name: Set Ticket Status, Wont do
+        if: contains(fromJson('["Won\u0027t Do"]'), github.event.inputs.ticket_status) 
+        run: |
+          curl \
+          -X PATCH \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{github.token}}" \
+          ${{ steps.sub.outputs.value }} \
+          -d '{"state":"closed", "state_reason":"not_planned"}'
 
 
 
