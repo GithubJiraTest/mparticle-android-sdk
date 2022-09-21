@@ -35,7 +35,7 @@ jobs:
       - name: Link Jira Issue
         run: |
           curl -k -v -D- -u ${{ env.JIRA_USER_EMAIL }}:${{ env.JIRA_API_TOKEN }} -X POST -H 'Content-Type: application/json' -d \
-          '{"object": {"url":"${{ github.event.issue.url }}","title":"Crazy customer support issue"}}' \
+          '{"object": {"url":"${{ github.event.issue.html_url }}","title":"Github Issue Link: ${{ github.event.repository.full_name }}"}}' \
           ${{ env.JIRA_BASE_URL }}/rest/api/2/issue/${{ steps.create.outputs.issue }}/remotelink
           
       - name: "Log created issue"
