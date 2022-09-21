@@ -42,11 +42,19 @@ jobs:
           body: |
             Tracked internally as ${{ steps.create.outputs.issue }} was created
           reactions: '+1'
+          
       - name: Create label
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'create-label'
           label-name: ${{ steps.create.outputs.issue }}
           label-color: '0095b3'
-          label-desc: ${{ steps.create.outputs.issue }}      
+          label-desc: ${{ steps.create.outputs.issue }} 
+          
+      - name: Add labels
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'add-labels'
+          issue-number: ${{ github.event.issue.number }} 
+          labels: ${{ steps.create.outputs.issue }}    
          
