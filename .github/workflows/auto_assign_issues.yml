@@ -10,7 +10,7 @@ jobs:
       - name: 'Auto-assign issue'
         uses: pozil/auto-assign-issue@v1
         with:
-            assignees: mchuangatmp,simonhoke
+            teams: issue-reviewers
             numOfAssignee: 1
             allowSelfAssign: false
             repo-token: ${{ secrets.MPARTICLE_BOT }}
