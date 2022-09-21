@@ -24,8 +24,6 @@ jobs:
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'get-issue'
-      
-     
 
       - name: "Log created issue"
-        run: echo "${{ steps.create.outputs.issues-labels }}"   
+        run: echo "${{ steps.create.outputs.issue-labels }}"   
