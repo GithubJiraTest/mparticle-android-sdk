@@ -62,10 +62,12 @@ jobs:
           replace: api.github.com/repos
 
       - run: echo ${{ steps.sub.outputs.value }}
+
+      - run : echo ${{ github.event.inputs.ticket_status }}
       
       - name: Set variable closed
         id: set_variable
-        if: contains(fromJson('["Done", "Won\u0027t Do"]'), steps.parse_url.outputs.ticket_status) 
+        if: contains(fromJson('["Done", "Won\u0027t Do"]'), github.event.inputs.ticket_status) 
         run: echo ::set-output name=ticket_status::closed
 
       - name: Set Ticket Status Open
