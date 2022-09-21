@@ -87,6 +87,12 @@ jobs:
           -H "Authorization: Bearer ${{github.token}}" \
           ${{ steps.sub.outputs.value }} \
           -d '{"state":"closed", "state_reason":"not_planned"}'
+          curl \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{github.token}}" \
+          ${{ steps.sub.outputs.value }}/comments \
+          -d '{"body":"mParticle ticket status has been changed to Wont Do"}'
           
       - name: Set Ticket Status Closed
         if: ${{ steps.set_variable.outputs.ticket_status == 'closed' && (contains(fromJson('["Done"]'), github.event.inputs.ticket_status))}} 
@@ -99,10 +105,11 @@ jobs:
           -d '{"state":"closed"}'
         
       - name: Comment status
+        if: ${{ steps.set_variable.outputs.ticket_status != 'closed' || (contains(fromJson('["Done"]'), github.event.inputs.ticket_status))}}
         run: |
           curl \
           -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{github.token}}" \
           ${{ steps.sub.outputs.value }}/comments \
-          -d '{"body":"\"mParticle ticket status has been changed to ${{  github.event.inputs.ticket_status }}\""}'
+          -d '{"body":"mParticle ticket status has been changed to ${{  github.event.inputs.ticket_status }}"}'
