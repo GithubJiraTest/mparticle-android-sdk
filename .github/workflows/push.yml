@@ -30,7 +30,7 @@ jobs:
             ${{ github.event.issue.title }}
           description: |
             ${{ github.event.issue.body }}
-          fields: '{"parent": { "key": "TP-8" }, "remoteLink": {"url": "www.google.com", "title": "externalLink"}}'
+          fields: '{"parent": { "key": "TP-8" }'
 
       - name: "Log created issue"
         run: echo "Issue ${{ steps.create.outputs.issue }} was created"
