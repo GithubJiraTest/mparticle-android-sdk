@@ -1,0 +1,36 @@
+
+name: Create Jira Issue
+
+on:
+  issue_comment:
+    types: ["created"]
+
+jobs:
+  issue-commented:
+    name: "Comment Issue"
+    runs-on: ubuntu-latest
+    env:
+      JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+      JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+      JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+    steps:
+      - name: "Checkout Branch"
+        uses: actions/checkout@v2
+
+      - name: "Login"
+        uses: atlassian/gajira-login@master
+
+      - name: "Get Issue"
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'get-issue'
+      
+      - name: "Create Comment"
+        id: create
+        uses: atlassian/gajira-comment@master
+        with:
+        issue: ${{ steps.create.outputs.issues-labels }}
+        comment: ${{ github.event.pusher.name }} pushed to repository: ${{ github.event.repository.full_name }}
+
+      - name: "Log created issue"
+        run: echo "${{ steps.create.outputs.issues-labels }}"   
