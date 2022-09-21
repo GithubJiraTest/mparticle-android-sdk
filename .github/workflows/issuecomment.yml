@@ -36,4 +36,14 @@ jobs:
           string: ${{ steps.get.outputs.issue-labels }}  
           
       - name: "Log found issue"
-        run: echo "${{ steps.find.outputs.issue }}"        
+        run: |
+          echo "${{ steps.find.outputs.issue }}"  
+          echo "${{ github.event.issue }}"  
+        
+      - name: "Create comment"
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ steps.find.outputs.issue }}
+          body: |
+            Check Github for new comment
+          reactions: '+1'  
