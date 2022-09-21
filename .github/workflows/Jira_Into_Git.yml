@@ -68,7 +68,7 @@ jobs:
 
       - name: Set variable open
         id: set_variable
-        if: contains(fromJson('["Done", "Won't Do"]'), steps.parse_url.outputs.ticket_status) 
+        if: contains(fromJson('["Done", "Won\'t Do"]'), steps.parse_url.outputs.ticket_status) 
         run: echo ::set-output name=status::closed
 
       - name: Set Ticket Status Open
