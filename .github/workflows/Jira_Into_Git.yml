@@ -6,10 +6,24 @@ name: Create Git Issue from Jira
 on:
   workflow_dispatch:
     inputs:
-      name:
+      jira_ticket:
         type: string
         description: Jira ticket number
         required: true
+      ticket_status:
+        type: string
+        description: Jira ticket status
+        required: true
+        options: 
+        - To Do
+        - In Progress
+        - In Review
+        - In Validation
+        - Blocked
+        - Ice Boxed
+        - Backlog
+        - Done
+        - Won't Do
   repository_dispatch:
 
 
