@@ -9,7 +9,7 @@ import org.gradle.plugins.signing.SigningExtension
 class KitPlugin implements Plugin<Project> {
     void apply(Project target) {
 
-        //formerly in kit-common.gradle
+        // formerly in kit-common.gradle
         target.apply(plugin: 'com.android.library')
         target.group = 'com.mparticle'
         target.buildscript.repositories.add(target.repositories.mavenLocal())
