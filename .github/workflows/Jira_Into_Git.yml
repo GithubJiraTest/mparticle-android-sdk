@@ -72,11 +72,11 @@ jobs:
         run: echo ::set-output name=status::closed
 
       - name: Set Ticket Status Open
-        if: steps.set_variable.outputs.status == "open"
+        if: ${{ steps.set_variable.outputs.status == "open" }}
         run: echo Opening ticket
 
       - name: Set Ticket Status Closed
-        if: steps.set_variable.outputs.status == "closed"
+        if: ${{ steps.set_variable.outputs.status == "closed" }}
         run: echo Closing ticket
       
 
