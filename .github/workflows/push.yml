@@ -29,7 +29,8 @@ jobs:
           summary: |
             New issue for ${{ github.repository }}
           description: |
-            New issue for ${{ github.repository }}
+            New issue for ${{ github.repository }}'
+          fields: '{"parent": { "key": "TP-8" }}'
 
       - name: "Log created issue"
         run: echo "Issue ${{ steps.create.outputs.issue }} was created"
