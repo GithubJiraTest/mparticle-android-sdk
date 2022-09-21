@@ -72,11 +72,11 @@ jobs:
 
       - name: Set Ticket Status Open
         if: ${{ steps.set_variable.outputs.ticket_status != 'closed' }}
-        run: echo Opening ticket
-
+        run: curl -u $GITHUB_TOKEN:x-oauth-basic ${{ steps.parse_url.outputs.issue_url }} -d '{"state":"open"}'
+        
       - name: Set Ticket Status Closed
         if: ${{ steps.set_variable.outputs.ticket_status == 'closed' }}
-        run: echo Closing ticket
+        run: curl -u $GITHUB_TOKEN:x-oauth-basic ${{ steps.parse_url.outputs.issue_url }} -d '{"state":"closed"}'
       
 
 
