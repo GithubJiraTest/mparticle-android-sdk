@@ -79,7 +79,7 @@ jobs:
           -d '{"state":"open"}'
       
       - name: Set Ticket Status, Wont do
-        if: github.event.inputs.ticket_status == 'Won\u0027t Do'
+        if: contains(fromJson('["Won\u0027t Do"]'), github.event.inputs.ticket_status)
         run: |
           curl \
           -X PATCH \
@@ -89,7 +89,7 @@ jobs:
           -d '{"state":"closed", "state_reason":"not_planned"}'
           
       - name: Set Ticket Status Closed
-        if: ${{ steps.set_variable.outputs.ticket_status == 'closed' &&  github.event.inputs.ticket_status != 'Won\u0027t Do'}} 
+        if: ${{ steps.set_variable.outputs.ticket_status == 'closed' && (contains(fromJson('["Done"]'), github.event.inputs.ticket_status))}} 
         run: |
           curl \
           -X PATCH \
