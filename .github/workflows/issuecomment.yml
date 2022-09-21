@@ -41,9 +41,7 @@ jobs:
           echo "${{ github.event.issue }}"  
         
       - name: "Create comment"
-        uses: peter-evans/create-or-update-comment@v2
+        uses: atlassian/gajira-comment@master
         with:
-          issue-number: ${{ steps.find.outputs.issue }}
-          body: |
-            ${{ github.event.comment.body }}
-          reactions: '+1'  
+          issue: ${{ steps.find.outputs.issue }}
+          comment: ${{ github.event.comment.body }}
