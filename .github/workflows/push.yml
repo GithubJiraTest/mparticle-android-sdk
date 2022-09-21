@@ -36,7 +36,7 @@ jobs:
         run: |
           curl -k -v -D- -u ${{ env.JIRA_USER_EMAIL }}:${{ env.JIRA_API_TOKEN }} -X POST -H 'Content-Type: application/json' -d \
           '{"object": {"url":"${{ github.event.issue.url }}","title":"Crazy customer support issue"}}' \
-          ${{ JIRA_BASE_URL }}/rest/api/2/issue/${{ steps.create.outputs.issue }}/remotelink
+          ${{ env.JIRA_BASE_URL }}/rest/api/2/issue/${{ steps.create.outputs.issue }}/remotelink
           
       - name: "Log created issue"
         run: echo "Issue ${{ steps.create.outputs.issue }} was created"
