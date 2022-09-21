@@ -61,9 +61,7 @@ jobs:
           find: github.com
           replace: api.github.com/repos
 
-      - run: echo ${{ steps.sub.outputs.value }}
-
-      - run : echo "${{ github.event.inputs.ticket_status }}"
+      - run: echo  ${{ steps.parse_url.outputs.issue_url.result }}
       
       - name: Set variable closed
         id: set_variable
@@ -72,11 +70,11 @@ jobs:
 
       - name: Set Ticket Status Open
         if: ${{ steps.set_variable.outputs.ticket_status != 'closed' }}
-        run: curl -u $GITHUB_TOKEN:x-oauth-basic ${{ steps.parse_url.outputs.issue_url }} -d '{"state":"open"}'
+        run: curl -u $GITHUB_TOKEN:x-oauth-basic ${{ steps.parse_url.outputs.issue_url.result }} -d '{"state":"open"}'
         
       - name: Set Ticket Status Closed
         if: ${{ steps.set_variable.outputs.ticket_status == 'closed' }}
-        run: curl -u $GITHUB_TOKEN:x-oauth-basic ${{ steps.parse_url.outputs.issue_url }} -d '{"state":"closed"}'
+        run: curl -u $GITHUB_TOKEN:x-oauth-basic ${{ steps.parse_url.outputs.issue_url.result }} -d '{"state":"closed"}'
       
 
 
