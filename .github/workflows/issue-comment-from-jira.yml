@@ -53,7 +53,9 @@ jobs:
 
       - run: echo  ${{ steps.sub.outputs.value }}
       
-      - name: Add Commen
+      - run: echo ${{ github.event.inputs.comment }}
+      
+      - name: Add Comment
         run: |
           curl \
           -X POST \
