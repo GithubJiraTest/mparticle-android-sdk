@@ -62,7 +62,7 @@ jobs:
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{github.token}}" \
           ${{ steps.sub.outputs.value }}/comments \
-          -d '{"body":"${{  toJSON(github.event.inputs.comment) }}"}'
+          -d '{"body": ${{  toJSON(github.event.inputs.comment) }} }'
       
 #      - name: Set variable closed
 #        id: set_variable
